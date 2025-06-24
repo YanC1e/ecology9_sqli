@@ -35,7 +35,7 @@ def check_vulnerability(target):
             elapsed[i] = time.time() - start_time
             status_codes.append(r.status_code)
 
-        all_success = all(code == 200 for code in status_codes)
+        all_success = any(code == 200 for code in status_codes)
         has_delay = any(6.0 <= e <= 7.0 for e in elapsed)
 
         if all_success and has_delay:
